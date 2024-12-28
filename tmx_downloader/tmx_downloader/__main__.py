@@ -1,7 +1,5 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, BooleanOptionalAction
 from pathlib import Path
-
-from devtools import pprint
 
 from .tmx import SearchMapsParameters, TrackmaniaExchange
 
@@ -10,6 +8,7 @@ def parse_args():
     parser = ArgumentParser()
     parser.add_argument("--author", required=True)
     parser.add_argument("--output", default="maps")
+    parser.add_argument("--force", default=False, action=BooleanOptionalAction)
     return parser.parse_args()
 
 
@@ -26,9 +25,14 @@ def main():
 
     count = 0
     for map in tmx.search_maps(params):
-        print(f"Downloading {map.name}")
-        tmx.download_map(output / f"{map.name}.Map.Gbx", map.map_id)
-        count += 1
+        map_file = output / f"{map.name}.Map.Gbx"
+
+        if args.force or not map_file.exists():
+            print(f"Downloading {map.name}")
+            tmx.download_map(map_file, map.map_id)
+            count += 1
+        else:
+            print(f"Skipping {map.name}: File already exists")
 
     print(f"Downloaded {count} maps")
 
