@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "tmx-downloader"
+version = "0.1.0"
+description = ""
+authors = ["Vinrobot <vinrobot97@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pydantic = "^2.10.3"
+requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+black = "^24.10.0"
+
+[tool.black]
+line-length = 144
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
