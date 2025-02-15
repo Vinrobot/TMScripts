@@ -1,10 +1,10 @@
-{
-  "profiles": {
-    "ItemCreator (Package)": {
-      "commandName": "MsixPackage"
-    },
-    "ItemCreator (Unpackaged)": {
-      "commandName": "Project"
+﻿{
+    "profiles": {
+      "ItemCreator (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "ItemCreator (Unpackaged)": {
+        "commandName": "Project"
+      }
     }
-  }
 }
