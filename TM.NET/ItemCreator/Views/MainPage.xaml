@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:m="using:ItemCreator.Models"
-    xmlns:ui="using:CommunityToolkit.WinUI" xmlns:viewmodels="using:ItemCreator.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+    xmlns:ui="using:CommunityToolkit.WinUI" xmlns:vm="using:ItemCreator.ViewModels" d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
     x:Name="page"
     mc:Ignorable="d">
 
@@ -34,9 +34,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="m:Animation">
                     <RelativePanel Padding="24" Margin="0,0,0,12" BorderThickness="1" CornerRadius="4" Background="{StaticResource AcrylicBackgroundFillColorDefaultBrush}" BorderBrush="{StaticResource ControlElevationBorderBrush}">
-                        <StackPanel Orientation="Horizontal" Spacing="12" x:DefaultBindMode="OneWay">
-                            <ComboBox Header="Ease" ItemsSource="{ui:EnumValues Type=m:AnimEase}" SelectedValue="{x:Bind Ease}"/>
-                            <TextBox Header="Duration" Text="{x:Bind Duration}"/>
+                        <StackPanel Orientation="Horizontal" Spacing="24" x:DefaultBindMode="TwoWay">
+                            <ComboBox Header="Ease" ItemsSource="{ui:EnumValues Type=m:AnimEase}" SelectedItem="{x:Bind Ease}" MinWidth="150"/>
+                            <TextBox Header="Duration" Text="{x:Bind Duration}" MinWidth="150"/>
                             <CheckBox Content="Reverse" IsChecked="{x:Bind Reverse}"/>
                         </StackPanel>
                         <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Command="{Binding ViewModel.RemoveAnimationCommand, ElementName=page}" CommandParameter="{x:Bind}">
